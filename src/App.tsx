@@ -1,35 +1,17 @@
-import { Box, CameraControls, OrbitControls, View } from "@react-three/drei";
-import "./App.css";
-import { Canvas } from "@react-three/fiber";
 import { useRef } from "react";
+import Canvas from "./Canvas";
+import styles from "./App.module.css";
+import IntroView from "./sections/intro/IntroView";
 
-function App() {
+export default function App() {
   const container = useRef<HTMLElement>(null!);
 
   return (
-    <main ref={container}>
-      <View style={{ width: "50%" }}>
-        <Box>
-          <meshNormalMaterial />
-        </Box>
-        <OrbitControls />
-      </View>
-      <View style={{ width: "50%" }}>
-        <Box>
-          <meshNormalMaterial />
-        </Box>
-        <CameraControls />
-      </View>
-      <Canvas
-        eventSource={container}
-        eventPrefix="client"
-        id="canvas"
-        style={{ position: "fixed", inset: 0 }}
-      >
-        <View.Port />
-      </Canvas>
+    <main className={styles.main} ref={container}>
+      <div className={styles.introContainer}>
+        <IntroView />
+      </div>
+      <Canvas />
     </main>
   );
 }
-
-export default App;
